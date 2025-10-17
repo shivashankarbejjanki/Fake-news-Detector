@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block title %}About - Fake News Detection{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary">About This Project</h1>
+            <p class="lead text-muted">
+                Learn about the technology and methodology behind our fake news detection system
+            </p>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Project Overview
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    This Fake News Detection system uses advanced machine learning algorithms to analyze text content 
+                    and identify potentially misleading or false information. The project combines natural language 
+                    processing techniques with multiple classification models to provide accurate predictions.
+                </p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">
+                            <i class="fas fa-bullseye me-1"></i>
+                            Objectives
+                        </h6>
+                        <ul>
+                            <li>Detect fake news with high accuracy</li>
+                            <li>Provide confidence scores for predictions</li>
+                            <li>Compare multiple ML algorithms</li>
+                            <li>Offer an intuitive web interface</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">
+                            <i class="fas fa-cogs me-1"></i>
+                            Key Features
+                        </h6>
+                        <ul>
+                            <li>Real-time text analysis</li>
+                            <li>Multiple model comparison</li>
+                            <li>Detailed confidence metrics</li>
+                            <li>User-friendly interface</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Machine Learning Models -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-brain me-2"></i>
+                    Machine Learning Models
+                </h4>
+            </div>
+            <div class="card-body">
+                <p>Our system employs three different machine learning algorithms, each with unique strengths:</p>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">Logistic Regression</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text small">
+                                    A linear model that's excellent for text classification. It provides interpretable 
+                                    results and works well with high-dimensional text data.
+                                </p>
+                                <div class="text-center">
+                                    <span class="badge bg-primary">Recommended</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h6 class="mb-0">Random Forest</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text small">
+                                    An ensemble method that combines multiple decision trees. It's robust to overfitting 
+                                    and can capture complex patterns in the data.
+                                </p>
+                                <div class="text-center">
+                                    <span class="badge bg-success">Robust</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-info">
+                            <div class="card-header bg-info text-white">
+                                <h6 class="mb-0">Naive Bayes</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text small">
+                                    A probabilistic classifier based on Bayes' theorem. It's fast and works well 
+                                    with text data, especially for spam and text classification tasks.
+                                </p>
+                                <div class="text-center">
+                                    <span class="badge bg-info">Fast</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <i class="fas fa-code me-2"></i>
+                    Technical Implementation
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-warning">
+                            <i class="fas fa-layer-group me-1"></i>
+                            Technology Stack
+                        </h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fab fa-python me-2 text-primary"></i><strong>Python</strong> - Core programming language</li>
+                            <li><i class="fas fa-flask me-2 text-success"></i><strong>Flask</strong> - Web framework</li>
+                            <li><i class="fas fa-chart-line me-2 text-info"></i><strong>Scikit-learn</strong> - Machine learning</li>
+                            <li><i class="fas fa-language me-2 text-warning"></i><strong>NLTK</strong> - Natural language processing</li>
+                            <li><i class="fab fa-bootstrap me-2 text-purple"></i><strong>Bootstrap</strong> - Frontend styling</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-warning">
+                            <i class="fas fa-process me-1"></i>
+                            Data Processing Pipeline
+                        </h6>
+                        <ol>
+                            <li><strong>Text Cleaning</strong> - Remove noise and special characters</li>
+                            <li><strong>Tokenization</strong> - Split text into individual words</li>
+                            <li><strong>Stopword Removal</strong> - Filter out common words</li>
+                            <li><strong>Stemming</strong> - Reduce words to root forms</li>
+                            <li><strong>Vectorization</strong> - Convert text to numerical features</li>
+                            <li><strong>Classification</strong> - Apply ML models for prediction</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Performance Metrics
+                </h4>
+            </div>
+            <div class="card-body">
+                <p>Our models are evaluated using standard machine learning metrics:</p>
+                
+                <div class="row">
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="border rounded p-3">
+                            <i class="fas fa-bullseye fa-2x text-primary mb-2"></i>
+                            <h6>Accuracy</h6>
+                            <p class="small text-muted">Overall correctness of predictions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="border rounded p-3">
+                            <i class="fas fa-crosshairs fa-2x text-success mb-2"></i>
+                            <h6>Precision</h6>
+                            <p class="small text-muted">Accuracy of positive predictions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="border rounded p-3">
+                            <i class="fas fa-search fa-2x text-warning mb-2"></i>
+                            <h6>Recall</h6>
+                            <p class="small text-muted">Ability to find all positive cases</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="border rounded p-3">
+                            <i class="fas fa-balance-scale fa-2x text-info mb-2"></i>
+                            <h6>F1-Score</h6>
+                            <p class="small text-muted">Harmonic mean of precision and recall</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Information -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-database me-2"></i>
+                    Dataset & Training
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-secondary">
+                            <i class="fas fa-table me-1"></i>
+                            Dataset Details
+                        </h6>
+                        <ul>
+                            <li>Fake and Real News Dataset</li>
+                            <li>Balanced classes for fair training</li>
+                            <li>Diverse news topics and sources</li>
+                            <li>80-20 train-test split</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-secondary">
+                            <i class="fas fa-graduation-cap me-1"></i>
+                            Training Process
+                        </h6>
+                        <ul>
+                            <li>Cross-validation for robust evaluation</li>
+                            <li>Hyperparameter tuning</li>
+                            <li>Feature importance analysis</li>
+                            <li>Model comparison and selection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Limitations and Disclaimers -->
+        <div class="alert alert-warning" role="alert">
+            <h5 class="alert-heading">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Limitations & Important Notes
+            </h5>
+            <ul class="mb-0">
+                <li><strong>Not 100% Accurate:</strong> No machine learning model is perfect. Always verify important information through multiple trusted sources.</li>
+                <li><strong>Context Matters:</strong> The model analyzes text patterns but may miss context, sarcasm, or nuanced information.</li>
+                <li><strong>Evolving Landscape:</strong> Fake news tactics evolve constantly. Models need regular updates with new data.</li>
+                <li><strong>Supplementary Tool:</strong> Use this as one tool among many for information verification, not as the sole source of truth.</li>
+                <li><strong>Bias Considerations:</strong> Models may inherit biases from training data. Be aware of potential limitations.</li>
+            </ul>
+        </div>
+
+        <!-- Future Enhancements -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>
+                    Future Enhancements
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-dark">
+                            <i class="fas fa-plus-circle me-1"></i>
+                            Planned Features
+                        </h6>
+                        <ul>
+                            <li>BERT/Transformer model integration</li>
+                            <li>Source credibility analysis</li>
+                            <li>Real-time fact-checking API</li>
+                            <li>Multi-language support</li>
+                            <li>Image and video analysis</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-dark">
+                            <i class="fas fa-chart-line me-1"></i>
+                            Improvements
+                        </h6>
+                        <ul>
+                            <li>Larger, more diverse datasets</li>
+                            <li>Real-time model updates</li>
+                            <li>Enhanced user interface</li>
+                            <li>API for developers</li>
+                            <li>Mobile app development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact and Contribution -->
+        <div class="text-center">
+            <h4 class="text-primary mb-3">Get Involved</h4>
+            <p class="text-muted">
+                This is an open-source project aimed at combating misinformation. 
+                Contributions, feedback, and suggestions are always welcome!
+            </p>
+            <div class="mt-3">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Analysis
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

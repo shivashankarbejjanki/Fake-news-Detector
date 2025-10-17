@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fake News Detection{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary">
+                <i class="fas fa-search me-3"></i>
+                Fake News Detector
+            </h1>
+            <p class="lead text-muted">
+                Analyze news articles using advanced machine learning algorithms to detect potentially fake or misleading content.
+            </p>
+        </div>
+
+        <!-- Input Form -->
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-newspaper me-2"></i>
+                    Enter News Text for Analysis
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('predict') }}" id="predictionForm">
+                    <!-- Text Input -->
+                    <div class="mb-4">
+                        <label for="news_text" class="form-label">
+                            <strong>News Article Text</strong>
+                        </label>
+                        <textarea 
+                            class="form-control" 
+                            id="news_text" 
+                            name="news_text" 
+                            rows="8" 
+                            placeholder="Paste or type the news article text here. The more text you provide, the more accurate the analysis will be..."
+                            required
+                        ></textarea>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Minimum 10 characters required. For best results, use complete sentences or paragraphs.
+                        </div>
+                    </div>
+
+                    <!-- Model Selection -->
+                    <div class="mb-4">
+                        <label for="model_choice" class="form-label">
+                            <strong>Choose Analysis Model</strong>
+                        </label>
+                        <select class="form-select" id="model_choice" name="model_choice">
+                            <option value="logistic_regression" selected>Logistic Regression (Recommended)</option>
+                            <option value="random_forest">Random Forest</option>
+                            <option value="naive_bayes">Naive Bayes</option>
+                            <option value="all">All Models (Comprehensive Analysis)</option>
+                        </select>
+                        <div class="form-text">
+                            <i class="fas fa-lightbulb me-1"></i>
+                            Different models may provide varying perspectives. Try "All Models" for comprehensive analysis.
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg" id="analyzeBtn">
+                            <i class="fas fa-cogs me-2"></i>
+                            Analyze News Article
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sample Text Examples -->
+        <div class="mt-5">
+            <h4 class="text-center mb-4">
+                <i class="fas fa-examples me-2"></i>
+                Try These Sample Texts
+            </h4>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="mb-0">
+                                <i class="fas fa-check-circle me-1"></i>
+                                Sample Real News
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text small">
+                                "Scientists at MIT have developed a new solar panel technology that increases efficiency by 40%. 
+                                The research, published in Nature Energy, shows promising results for renewable energy applications. 
+                                The team used advanced materials science to create panels that can capture more sunlight..."
+                            </p>
+                            <button class="btn btn-outline-success btn-sm" onclick="fillSampleText(this)">
+                                <i class="fas fa-copy me-1"></i>Use This Sample
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-danger text-white">
+                            <h6 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-1"></i>
+                                Sample Fake News
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text small">
+                                "SHOCKING: Scientists discover that drinking coffee backwards can cure all diseases! 
+                                This amazing secret has been hidden by Big Pharma for decades. One simple trick that doctors 
+                                don't want you to know about. Click here to learn the truth they've been hiding..."
+                            </p>
+                            <button class="btn btn-outline-danger btn-sm" onclick="fillSampleText(this)">
+                                <i class="fas fa-copy me-1"></i>Use This Sample
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="mt-5">
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-question-circle me-2"></i>
+                        How It Works
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-text-width fa-3x text-primary mb-3"></i>
+                            <h6>Text Processing</h6>
+                            <p class="small text-muted">
+                                The system cleans and preprocesses your text, removing noise and extracting meaningful features.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-brain fa-3x text-success mb-3"></i>
+                            <h6>ML Analysis</h6>
+                            <p class="small text-muted">
+                                Advanced machine learning models analyze patterns and linguistic features to detect fake content.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-chart-bar fa-3x text-warning mb-3"></i>
+                            <h6>Results</h6>
+                            <p class="small text-muted">
+                                Get detailed predictions with confidence scores and explanations for each model's decision.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function fillSampleText(button) {
+    const cardText = button.parentElement.querySelector('.card-text').textContent.trim();
+    document.getElementById('news_text').value = cardText.replace(/"/g, '');
+    
+    // Scroll to form
+    document.getElementById('predictionForm').scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+    
+    // Highlight the textarea briefly
+    const textarea = document.getElementById('news_text');
+    textarea.classList.add('border-primary');
+    setTimeout(() => {
+        textarea.classList.remove('border-primary');
+    }, 2000);
+}
+
+// Form validation
+document.getElementById('predictionForm').addEventListener('submit', function(e) {
+    const textarea = document.getElementById('news_text');
+    const text = textarea.value.trim();
+    
+    if (text.length < 10) {
+        e.preventDefault();
+        alert('Please enter at least 10 characters for analysis.');
+        textarea.focus();
+        return false;
+    }
+    
+    // Show loading state
+    const button = document.getElementById('analyzeBtn');
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Analyzing...';
+    button.disabled = true;
+});
+</script>
+{% endblock %}

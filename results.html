@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - Fake News Detection{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h2 class="text-primary">
+                <i class="fas fa-chart-line me-2"></i>
+                Analysis Results
+            </h2>
+            <p class="text-muted">Detailed fake news detection analysis for your submitted text</p>
+        </div>
+
+        <!-- Input Text Display -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-file-text me-2"></i>
+                    Analyzed Text
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="bg-light p-3 rounded">
+                    <p class="mb-0">{{ text }}</p>
+                </div>
+                <small class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Text length: {{ text|length }} characters
+                </small>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        {% if results %}
+            {% for model_name, result in results.items() %}
+                {% if not result.get('error') %}
+                    <div class="card mb-4 shadow">
+                        <div class="card-header {% if result.prediction == 'Real' %}bg-success{% else %}bg-danger{% endif %} text-white">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-robot me-2"></i>
+                                        {{ model_name.replace('_', ' ').title() }}
+                                    </h5>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="badge {% if result.prediction == 'Real' %}bg-light text-success{% else %}bg-light text-danger{% endif %} fs-6">
+                                        {% if result.prediction == 'Real' %}
+                                            <i class="fas fa-check-circle me-1"></i>REAL NEWS
+                                        {% else %}
+                                            <i class="fas fa-exclamation-triangle me-1"></i>FAKE NEWS
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Prediction Details -->
+                                <div class="col-md-6">
+                                    <h6 class="text-primary">
+                                        <i class="fas fa-bullseye me-1"></i>
+                                        Prediction Details
+                                    </h6>
+                                    
+                                    <div class="mb-3">
+                                        <strong>Classification:</strong>
+                                        <span class="ms-2 badge {% if result.prediction == 'Real' %}bg-success{% else %}bg-danger{% endif %}">
+                                            {{ result.prediction }}
+                                        </span>
+                                    </div>
+                                    
+                                    {% if result.confidence %}
+                                        <div class="mb-3">
+                                            <strong>Confidence Score:</strong>
+                                            <span class="ms-2">{{ "%.2f"|format(result.confidence * 100) }}%</span>
+                                            
+                                            <div class="progress mt-2" style="height: 8px;">
+                                                <div class="progress-bar {% if result.confidence > 0.7 %}bg-success{% elif result.confidence > 0.5 %}bg-warning{% else %}bg-danger{% endif %}" 
+                                                     role="progressbar" 
+                                                     style="width: {{ result.confidence * 100 }}%">
+                                                </div>
+                                            </div>
+                                            
+                                            <small class="text-muted">
+                                                {% if result.confidence > 0.8 %}
+                                                    <i class="fas fa-thumbs-up text-success me-1"></i>High confidence
+                                                {% elif result.confidence > 0.6 %}
+                                                    <i class="fas fa-thumbs-up text-warning me-1"></i>Moderate confidence
+                                                {% else %}
+                                                    <i class="fas fa-thumbs-down text-danger me-1"></i>Low confidence
+                                                {% endif %}
+                                            </small>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Probability Breakdown -->
+                                {% if result.fake_probability and result.real_probability %}
+                                <div class="col-md-6">
+                                    <h6 class="text-primary">
+                                        <i class="fas fa-chart-pie me-1"></i>
+                                        Probability Breakdown
+                                    </h6>
+                                    
+                                    <div class="mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span><i class="fas fa-times-circle text-danger me-1"></i>Fake:</span>
+                                            <strong>{{ "%.1f"|format(result.fake_probability * 100) }}%</strong>
+                                        </div>
+                                        <div class="progress mb-2" style="height: 6px;">
+                                            <div class="progress-bar bg-danger" 
+                                                 style="width: {{ result.fake_probability * 100 }}%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span><i class="fas fa-check-circle text-success me-1"></i>Real:</span>
+                                            <strong>{{ "%.1f"|format(result.real_probability * 100) }}%</strong>
+                                        </div>
+                                        <div class="progress" style="height: 6px;">
+                                            <div class="progress-bar bg-success" 
+                                                 style="width: {{ result.real_probability * 100 }}%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- Interpretation -->
+                            <div class="mt-3 p-3 {% if result.prediction == 'Real' %}bg-success{% else %}bg-danger{% endif %} bg-opacity-10 rounded">
+                                <h6 class="{% if result.prediction == 'Real' %}text-success{% else %}text-danger{% endif %}">
+                                    <i class="fas fa-lightbulb me-1"></i>
+                                    Interpretation
+                                </h6>
+                                <p class="mb-0 small">
+                                    {% if result.prediction == 'Real' %}
+                                        This text appears to be <strong>legitimate news content</strong>. The model detected patterns 
+                                        consistent with factual reporting and credible journalism.
+                                        {% if result.confidence and result.confidence > 0.8 %}
+                                            The high confidence score suggests strong indicators of authenticity.
+                                        {% elif result.confidence and result.confidence > 0.6 %}
+                                            The moderate confidence suggests some uncertainty - consider cross-referencing with other sources.
+                                        {% endif %}
+                                    {% else %}
+                                        This text shows characteristics of <strong>potentially fake or misleading content</strong>. 
+                                        The model detected patterns often associated with misinformation, sensationalism, or unreliable sources.
+                                        {% if result.confidence and result.confidence > 0.8 %}
+                                            The high confidence score suggests strong indicators of potential misinformation.
+                                        {% elif result.confidence and result.confidence > 0.6 %}
+                                            The moderate confidence suggests some uncertainty - verify with trusted sources before sharing.
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Error Display -->
+                    <div class="card mb-4 border-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                {{ model_name.replace('_', ' ').title() }} - Error
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-danger mb-0">{{ result.error }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <!-- Summary for Multiple Models -->
+        {% if results|length > 1 %}
+            <div class="card mb-4 border-info">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Summary & Consensus
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% set real_count = results.values() | selectattr('prediction', 'equalto', 'Real') | list | length %}
+                    {% set fake_count = results.values() | selectattr('prediction', 'equalto', 'Fake') | list | length %}
+                    {% set total_models = results.values() | rejectattr('error') | list | length %}
+                    
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="border rounded p-3">
+                                <h3 class="text-success">{{ real_count }}</h3>
+                                <p class="mb-0">Models predict <strong>REAL</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border rounded p-3">
+                                <h3 class="text-danger">{{ fake_count }}</h3>
+                                <p class="mb-0">Models predict <strong>FAKE</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border rounded p-3">
+                                <h3 class="text-primary">{{ total_models }}</h3>
+                                <p class="mb-0">Total models analyzed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 p-3 {% if real_count > fake_count %}bg-success{% elif fake_count > real_count %}bg-danger{% else %}bg-warning{% endif %} bg-opacity-10 rounded">
+                        <h6 class="{% if real_count > fake_count %}text-success{% elif fake_count > real_count %}text-danger{% else %}text-warning{% endif %}">
+                            <i class="fas fa-vote-yea me-1"></i>
+                            Consensus
+                        </h6>
+                        <p class="mb-0">
+                            {% if real_count > fake_count %}
+                                <strong>Majority consensus: REAL NEWS</strong> - Most models agree this appears to be legitimate content.
+                            {% elif fake_count > real_count %}
+                                <strong>Majority consensus: FAKE NEWS</strong> - Most models agree this appears to be potentially misleading content.
+                            {% else %}
+                                <strong>Split decision</strong> - Models are divided. Exercise extra caution and verify with multiple trusted sources.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Disclaimer -->
+        <div class="alert alert-warning" role="alert">
+            <h6 class="alert-heading">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Important Disclaimer
+            </h6>
+            <p class="mb-0">
+                This analysis is provided by machine learning models and should be used as a <strong>preliminary assessment only</strong>. 
+                Always verify information through multiple trusted sources, fact-checking websites, and reputable news organizations 
+                before making decisions or sharing content. No automated system is 100% accurate.
+            </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-center">
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-plus me-2"></i>
+                Analyze Another Article
+            </a>
+            <button class="btn btn-outline-secondary btn-lg" onclick="window.print()">
+                <i class="fas fa-print me-2"></i>
+                Print Results
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Add some interactive features
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate progress bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.transition = 'width 1s ease-in-out';
+            bar.style.width = width;
+        }, 100);
+    });
+});
+</script>
+{% endblock %}

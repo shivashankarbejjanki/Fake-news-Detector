@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fake-news-detection
+    env: python
+    buildCommand: "pip install -r requirements.txt && python -c 'import nltk; nltk.download(\"punkt\"); nltk.download(\"stopwords\"); nltk.download(\"punkt_tab\")'"
+    startCommand: "python app.py"
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: FLASK_ENV
+        value: production
