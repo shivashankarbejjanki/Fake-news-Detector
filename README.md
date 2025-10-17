@@ -1,4 +1,4 @@
-# 🔍 Fake News Detection System
+# Fake News Detection System
 
 A comprehensive machine learning project for detecting fake news using multiple algorithms and a user-friendly web interface.
 
@@ -7,7 +7,7 @@ A comprehensive machine learning project for detecting fake news using multiple 
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3.0-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -23,7 +23,7 @@ A comprehensive machine learning project for detecting fake news using multiple 
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Overview
+## Overview
 
 This project implements a sophisticated fake news detection system using multiple machine learning algorithms. It combines natural language processing techniques with ensemble methods to provide accurate predictions about the authenticity of news articles.
 
@@ -33,63 +33,63 @@ This project implements a sophisticated fake news detection system using multipl
 - **Usability**: Provide an intuitive web interface
 - **Scalability**: Support real-time analysis and API access
 
-## ✨ Features
+## Features
 
 ### Core Features
-- 🤖 **Multiple ML Models**: Logistic Regression, Random Forest, Naive Bayes
-- 🌐 **Web Interface**: User-friendly Flask web application
-- 📊 **Detailed Analytics**: Confidence scores, probability breakdowns
-- 🔄 **Real-time Processing**: Instant text analysis
-- 📱 **Responsive Design**: Works on desktop and mobile devices
+-  **Multiple ML Models**: Logistic Regression, Random Forest, Naive Bayes
+-  **Web Interface**: User-friendly Flask web application
+-  **Detailed Analytics**: Confidence scores, probability breakdowns
+-  **Real-time Processing**: Instant text analysis
+-  **Responsive Design**: Works on desktop and mobile devices
 
 ### Advanced Features
-- 🧠 **BERT Integration**: Optional transformer-based model (bonus)
-- 📈 **Model Comparison**: Side-by-side performance analysis
-- 🎨 **Interactive Visualizations**: Confusion matrices, ROC curves
-- 🔌 **REST API**: Programmatic access for developers
-- 📋 **Cross-validation**: Robust model evaluation
+-  **BERT Integration**: Optional transformer-based model (bonus)
+-  **Model Comparison**: Side-by-side performance analysis
+-  **Interactive Visualizations**: Confusion matrices, ROC curves
+-  **REST API**: Programmatic access for developers
+-  **Cross-validation**: Robust model evaluation
 
 ### Technical Features
-- 🛠️ **Comprehensive Preprocessing**: Text cleaning, tokenization, stemming
-- 📊 **Feature Engineering**: TF-IDF and Count Vectorization
-- 🎯 **Hyperparameter Tuning**: Optimized model parameters
-- 💾 **Model Persistence**: Save and load trained models
-- 📝 **Detailed Logging**: Comprehensive error handling
+-  **Comprehensive Preprocessing**: Text cleaning, tokenization, stemming
+-  **Feature Engineering**: TF-IDF and Count Vectorization
+-  **Hyperparameter Tuning**: Optimized model parameters
+-  **Model Persistence**: Save and load trained models
+-  **Detailed Logging**: Comprehensive error handling
 
 ## 📁 Project Structure
 
 ```
 fake-news-detection/
 │
-├── 📄 README.md                 # Project documentation
-├── 📄 requirements.txt          # Python dependencies
-├── 🐍 app.py                   # Flask web application
+├──  README.md                 # Project documentation
+├──  requirements.txt          # Python dependencies
+├──  app.py                   # Flask web application
 │
 ├── 📁 src/                     # Source code modules
-│   ├── 🐍 __init__.py
-│   ├── 🐍 data_preprocessing.py # Data cleaning and preprocessing
-│   ├── 🐍 ml_models.py         # Machine learning models
-│   └── 🐍 bert_model.py        # BERT implementation (bonus)
+│   ├──  __init__.py
+│   ├──  data_preprocessing.py # Data cleaning and preprocessing
+│   ├──  ml_models.py         # Machine learning models
+│   └──  bert_model.py        # BERT implementation (bonus)
 │
 ├── 📁 templates/               # HTML templates
-│   ├── 📄 base.html            # Base template
-│   ├── 📄 index.html           # Home page
-│   ├── 📄 results.html         # Results page
-│   ├── 📄 about.html           # About page
-│   └── 📄 error.html           # Error page
+│   ├──  base.html            # Base template
+│   ├──  index.html           # Home page
+│   ├──  results.html         # Results page
+│   ├──  about.html           # About page
+│   └──  error.html           # Error page
 │
 ├── 📁 static/                  # Static files
 │   ├── 📁 css/
-│   │   └── 📄 style.css        # Custom styles
+│   │   └──  style.css        # Custom styles
 │   └── 📁 js/
-│       └── 📄 main.js          # JavaScript functionality
+│       └──  main.js          # JavaScript functionality
 │
 ├── 📁 models/                  # Saved ML models (created after training)
 ├── 📁 data/                    # Dataset files (optional)
 └── 📁 notebooks/               # Jupyter notebooks (optional)
 ```
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -128,7 +128,7 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 python -c "import sklearn, nltk, flask; print('All dependencies installed successfully!')"
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Running the Web Application
 
@@ -163,7 +163,7 @@ python src/ml_models.py
 python src/bert_model.py
 ```
 
-## 🤖 Machine Learning Models
+## Machine Learning Models
 
 ### 1. Logistic Regression (Recommended)
 - **Type**: Linear classifier
@@ -185,7 +185,7 @@ python src/bert_model.py
 - **Strengths**: State-of-the-art NLP performance
 - **Use Case**: Maximum accuracy (requires more resources)
 
-## 🌐 Web Application
+## Web Application
 
 ### Features
 - **Clean Interface**: Modern, responsive design
@@ -200,7 +200,7 @@ python src/bert_model.py
 3. **About (`/about`)**: Project information and methodology
 4. **API Docs**: RESTful API documentation
 
-## 🔌 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -274,7 +274,7 @@ fetch('/api/predict', {
 .then(data => console.log(data));
 ```
 
-## 📊 Dataset
+## Dataset
 
 ### Sample Dataset
 The project includes a built-in sample dataset for demonstration:
@@ -300,7 +300,7 @@ df = preprocessor.load_data('path/to/your/dataset.csv', use_sample=False)
 - **LIAR Dataset** (Political fact-checking)
 - **FakeNewsNet** (Social media fake news)
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 ### Evaluation Metrics
 - **Accuracy**: Overall correctness
@@ -325,7 +325,7 @@ cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='accuracy')
 print(f"CV Accuracy: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")
 ```
 
-## 🧠 Advanced Features
+## Advanced Features
 
 ### BERT Integration
 For state-of-the-art performance, the project includes BERT implementation:
@@ -358,7 +358,7 @@ importance_df = classifier.get_feature_importance('random_forest', feature_names
 print(importance_df.head(10))
 ```
 
-## 🛠️ Development
+## Development
 
 ### Adding New Models
 1. Implement in `src/ml_models.py`
@@ -376,7 +376,7 @@ Modify `src/data_preprocessing.py`:
 - Extend CSS in `static/css/style.css`
 - Add JavaScript functionality in `static/js/main.js`
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 ```bash
@@ -396,7 +396,7 @@ pytest tests/ --cov=src --cov-report=html
 3. Test edge cases (empty text, special characters)
 4. Verify API responses
 
-## 🚀 Deployment
+## Deployment
 
 ### Local Deployment
 The application runs locally by default. For production deployment:
@@ -420,7 +420,7 @@ CMD ["python", "app.py"]
 - **AWS**: Deploy using Elastic Beanstalk
 - **Google Cloud**: Use App Engine or Cloud Run
 
-## 📝 Contributing
+## Contributing
 
 We welcome contributions! Please follow these steps:
 
@@ -436,7 +436,7 @@ We welcome contributions! Please follow these steps:
 - Include tests for new features
 - Update documentation as needed
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -456,11 +456,11 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 - Check Python version compatibility
 
 ### Getting Help
-- 📧 **Email**: your.email@example.com
-- 🐛 **Issues**: GitHub Issues page
-- 💬 **Discussions**: GitHub Discussions
+-  **Email**: your.email@example.com
+-  **Issues**: GitHub Issues page
+-  **Discussions**: GitHub Discussions
 
-## ⚠️ Limitations and Disclaimers
+##  Limitations and Disclaimers
 
 ### Important Notes
 - **Not 100% Accurate**: No ML model is perfect
@@ -475,11 +475,11 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 - Always verify important information through multiple sources
 - Be aware of potential biases and limitations
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Scikit-learn**: Machine learning library
 - **NLTK**: Natural language processing toolkit
@@ -488,7 +488,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Hugging Face**: Transformer models
 - **Open Source Community**: For tools and inspiration
 
-## 📚 References
+##  References
 
 1. Pérez-Rosas, V., et al. (2017). "Automatic Detection of Fake News"
 2. Shu, K., et al. (2017). "Fake News Detection on Social Media"
@@ -500,4 +500,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for combating misinformation**
 
-*Last updated: October 2024*
+*Last updated: October *
